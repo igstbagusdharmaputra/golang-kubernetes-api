@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"crypto/tls"
 	"crypto/x509"
 	"encoding/json"
@@ -64,8 +65,13 @@ func main() {
 	json.Unmarshal(responsedata, &data)
 
 	result := data["data"].(map[string]interface{})
-
-	for key, value := range result {
-		fmt.Println(key + "=" + value.(string))
+	file, err := os.Create("./.env")
+	if err != nil {
+		log.Println(err)
 	}
+	w := bufio.NewWriter(file)
+	for key, value := range result {
+		fmt.Fprintln(w, key+"="+value.(string))
+	}
+	w.Flush()
 }

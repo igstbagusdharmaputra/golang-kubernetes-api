@@ -6,3 +6,4 @@ metadata:
 data:
   app_name: "golang-app"
   port: "8080"
+  env: "development"
