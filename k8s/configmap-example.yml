@@ -1,0 +1,8 @@
+kind: ConfigMap 
+apiVersion: v1 
+metadata:
+  name: golang-example-configmap
+  namespace: default 
+data:
+  app_name: "golang-app"
+  port: "8080"
